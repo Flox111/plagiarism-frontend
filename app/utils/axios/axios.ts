@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useToken } from "../context/TokenContext";
+import { useToken } from "../../context/TokenContext";
 
 const BASE_URL = "http://localhost:8080"
 

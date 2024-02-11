@@ -3,8 +3,7 @@
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import useAxiosAuth from "../hooks/useAxiosAuth";
-import { useToken } from "../context/TokenContext";
+import useAxiosAuth from "../utils/hooks/useAxiosAuth";
 
 interface UserResponse {
   data: string | null;

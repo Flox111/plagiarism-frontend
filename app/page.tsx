@@ -1,17 +1,11 @@
-import Image from "next/image";
-import { LoginForm } from "./form/form";
-import { TokenProvider } from "./context/TokenContext";
+import { LoginForm } from "./components/login/LoginForm";
 
 export default function Home() {
   return (
-    // <TokenProvider>
-      <section className="bg-ct-blue-600 min-h-screen pt-20">
-        <div className="container mx-auto px-6 py-12 h-full flex justify-center items-center">
-          <div className="md:w-8/12 lg:w-5/12 bg-white px-8 py-10">
-            <LoginForm />
-          </div>
-        </div>
-      </section>
-    // </TokenProvider>
+    <section className="bg-dark-gray-10 min-h-screen pt-20">
+      <div className="container mx-auto px-6 py-12 h-full flex justify-center items-center">
+        <LoginForm />
+      </div>
+    </section>
   );
 }

@@ -16,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"><TokenProvider><body className={inter.className}>{children}</body></TokenProvider>
-      
+    <html lang="en">
+      <TokenProvider>
+        <body>{children}</body>
+      </TokenProvider>
     </html>
   );
 }

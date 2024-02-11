@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { axiosAuth } from "../axios/axios";
-import { useToken } from "../context/TokenContext";
+import { useToken } from "../../context/TokenContext";
 import axios from "axios";
 
 const useAxiosAuth = () => {
