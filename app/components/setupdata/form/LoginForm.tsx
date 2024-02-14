@@ -2,16 +2,19 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
-import { useToken } from "../../context/TokenContext";
-import useAxiosAuth from "../../utils/hooks/useAxiosAuth";
+import { ChangeEvent, FC, useState } from "react";
+import { useToken } from "../../../context/TokenContext";
 import styles from "./form.module.scss";
+import { motion } from "framer-motion";
 
-export const LoginForm = () => {
+interface LoginFormProps {
+  changeState: () => void;
+}
+
+export const LoginForm: FC<LoginFormProps> = ({ changeState }) => {
   const router = useRouter();
   const { setAccessToken } = useToken();
   const [loading, setLoading] = useState(false);
-  const axiosAuth = useAxiosAuth();
 
   const [formValues, setFormValues] = useState({
     username: "",
@@ -58,8 +61,8 @@ export const LoginForm = () => {
   return (
     <div className={styles.parent}>
       <h1 className={styles.form_title}>Log in</h1>
-      <form onSubmit={handleSubmit} className="w-64">
-        <div className="mb-6">
+      <form onSubmit={handleSubmit}>
+        <div>
           <div className={styles.input_title}>Username</div>
           <div className={styles.input_wrapper}>
             <input
@@ -75,7 +78,7 @@ export const LoginForm = () => {
             <p className={styles.input_error}>{usernameError}</p>
           )}
         </div>
-        <div className="mb-6">
+        <div>
           <div className={styles.input_title}>Password</div>
           <div className={styles.input_wrapper}>
             <input
@@ -89,17 +92,25 @@ export const LoginForm = () => {
           </div>
         </div>
         <div className={styles.button_wrapper}>
-          <button
-            type="submit"
-            style={{ backgroundColor: `${loading ? "#ccc" : ""}` }}
-            disabled={loading}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
           >
-            {loading ? "loading..." : "Log in"}
-          </button>
+            <button
+              type="submit"
+              style={{ backgroundColor: `${loading ? "#ccc" : ""}` }}
+              disabled={loading}
+            >
+              {loading ? "loading..." : "Log In"}
+            </button>
+          </motion.div>
         </div>
       </form>
       <div className={styles.hint}>
-        Don’t have an account? <a href="/signup">Sign up</a>
+        Don’t have an account?{" "}
+        <div className={styles.change_form_btn} onClick={changeState}>
+          Create an account
+        </div>
       </div>
     </div>
   );

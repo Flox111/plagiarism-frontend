@@ -1,8 +1,16 @@
 .parent {
-  @apply bg-dark-gray-5 p-4 rounded-3xl flex flex-col shadow-3xl;
+  @apply bg-dark-gray-5 p-4 flex flex-col;
+
+  form {
+    @apply w-80 min-h-96 flex flex-col gap-5
+  }
 
   .form_title {
     @apply self-center font-bold text-[30px] mb-16;
+  }
+
+  .change_form_btn {
+    @apply inline-block font-bold cursor-pointer text-dark-gray-80
   }
 
   input {
@@ -13,8 +21,7 @@
 
   .input_wrapper {
     @apply rounded-xl p-[1px] w-full bg-dark-gray-20 
-        focus-within:bg-gradient-to-r focus-within:from-[#fb7185] 
-        focus-within:via-[#d946ef] focus-within:to-[#6366f1];
+        focus-within:bg-gradient-to-r from-[#00f09f] to-[#09f];
   }
 
   .input_title {
@@ -27,11 +34,12 @@
 
   button {
     @apply inline-block rounded-2xl px-7 py-3 text-xs text-white font-medium leading-snug 
-        focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-full;
+        focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-full 
+        bg-gradient-to-r from-[#00f09f] to-[#09f];
   }
 
   .button_wrapper {
-    @apply rounded-xl p-[1px] mb-4 mt-10 from-[#fb7185] via-[#d946ef] to-[#6366f1] bg-gradient-to-r;
+    @apply mt-auto mb-4;
   }
 
   a {
