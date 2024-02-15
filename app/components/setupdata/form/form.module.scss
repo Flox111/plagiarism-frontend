@@ -21,7 +21,7 @@
 
   .input_wrapper {
     @apply rounded-xl p-[1px] w-full bg-dark-gray-20 
-        focus-within:bg-gradient-to-r from-[#00f09f] to-[#09f];
+        focus-within:bg-gradient-to-r from-[#255ff4] to-[#f425c7];
   }
 
   .input_title {
@@ -35,7 +35,7 @@
   button {
     @apply inline-block rounded-2xl px-7 py-3 text-xs text-white font-medium leading-snug 
         focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-full 
-        bg-gradient-to-r from-[#00f09f] to-[#09f];
+        bg-gradient-to-r from-[#255ff4] to-[#f425c7];
   }
 
   .button_wrapper {

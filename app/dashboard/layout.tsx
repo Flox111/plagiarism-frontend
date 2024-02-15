@@ -4,6 +4,7 @@ import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import useAxiosAuth from "../utils/hooks/useAxiosAuth";
+import { Loading } from "../components/loading/Loading";
 
 interface UserResponse {
   data: string | null;
@@ -35,7 +36,7 @@ export default function DashboardLayout({
   return (
     <main>
       {!user ? (
-        <h1>Loading...</h1>
+        <Loading/>
       ) : (
         <div>
           <h1>{user}</h1>
