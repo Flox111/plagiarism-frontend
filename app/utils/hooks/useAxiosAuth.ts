@@ -27,7 +27,7 @@ const useAxiosAuth = () => {
         if (error.response.status == 403 && !prevRequest.sent) {
           prevRequest.sent = true;
           const res = await axios(
-            "http://localhost:8080/api/v1/auth/refreshToken",
+            "http://localhost:8080/plagiarism/api/v1/auth/refreshToken",
             {
               method: "post",
               data: {},

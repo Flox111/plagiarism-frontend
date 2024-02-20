@@ -32,12 +32,11 @@ export const RegisterForm = ({ changeState }: RegisterFormProps) => {
     };
     try {
       setLoading(true);
-      const data = await axios("http://localhost:8080/api/v1/auth/register", {
+      const data = await axios("http://localhost:8080/plagiarism/api/v1/auth/register", {
         method: "post",
         data: payload,
         withCredentials: true,
       });
-      console.log(data.data.accessToken);
       setAccessToken(data.data.accessToken);
       router.push("/dashboard");
       setLoading(false);

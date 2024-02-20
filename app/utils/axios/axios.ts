@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useToken } from "../../context/TokenContext";
 
-const BASE_URL = "http://localhost:8080"
+const BASE_URL = "http://localhost:8080/plagiarism/api/v1"
 
 export const axiosAuth = axios.create({
     baseURL: BASE_URL,

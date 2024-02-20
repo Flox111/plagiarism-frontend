@@ -26,7 +26,7 @@ export const SetupData:FC = () => {
         ) : (
           <RegisterForm changeState={changeState} />
         )}
-        <div className="bg-gradient-to-br from-[#255ff4] to-[#f425c7]"></div>
+        <div className="bg-gradient-to-br from-[#255ff4] to-[#f425c7] rounded-r-xl"></div>
     </div>
     </motion.div>
   );

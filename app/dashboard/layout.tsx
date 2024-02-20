@@ -1,10 +1,11 @@
 "use client";
 
-import { AxiosError } from "axios";
+import { AxiosError, AxiosInstance } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import useAxiosAuth from "../utils/hooks/useAxiosAuth";
 import { Loading } from "../components/loading/Loading";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface UserResponse {
   data: string | null;
@@ -17,32 +18,26 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter();
-  const [user, setUser] = useState<string | null>(null);
   const axiosAuth = useAxiosAuth();
+  const [isVerify, setVerify] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axiosAuth.get("/api/v1/user");
-        setUser(data);
-      } catch (e) {
-        const error = e as AxiosError;
+    checkVerify(axiosAuth).then((success: boolean) => {
+      if (!success) {
         router.push("/");
       }
-    };
-    fetchData();
+      setVerify(success);
+    });
   }, []);
 
-  return (
-    <main>
-      {!user ? (
-        <Loading/>
-      ) : (
-        <div>
-          <h1>{user}</h1>
-          {children}
-        </div>
-      )}
-    </main>
-  );
+  return <main>{!isVerify ? <Loading /> : <div>{children}</div>}</main>;
 }
+
+const checkVerify = async (axiosAuth: AxiosInstance): Promise<boolean> => {
+  let success: boolean = false;
+  try {
+    const { data } = await axiosAuth.post("/auth/verify");
+    success = data.success;
+  } catch (e) {}
+  return success;
+};

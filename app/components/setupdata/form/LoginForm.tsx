@@ -36,7 +36,7 @@ export const LoginForm: FC<LoginFormProps> = ({ changeState }) => {
     try {
       setLoading(true);
       const data = await axios(
-        "http://localhost:8080/api/v1/auth/authenticate",
+        "http://localhost:8080/plagiarism/api/v1/auth/authenticate",
         {
           method: "post",
           data: payload,
