@@ -3,23 +3,17 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, SVGProps, JSX } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { axiosAuth } from "@/app/utils/axios/axios";
 
 export default function ProfileDropdown() {
-  const router = useRouter();
-
   const handleLogout = async () => {
     try {
-      const data = await axiosAuth("/auth/logout",
-        {
-          method: "post",
-          withCredentials: true,
-        }
-      );
+      await axiosAuth("/auth/logout", {
+        method: "post",
+        withCredentials: true,
+      });
       window.location.reload();
-    } catch (error: any) {
-    }
+    } catch (error: any) {}
   };
 
   return (

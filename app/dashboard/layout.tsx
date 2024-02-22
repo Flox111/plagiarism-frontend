@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import useAxiosAuth from "../utils/hooks/useAxiosAuth";
 import { Loading } from "../components/loading/Loading";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { Header } from "../components/header/Header";
 
 interface UserResponse {
   data: string | null;
@@ -30,7 +31,19 @@ export default function DashboardLayout({
     });
   }, []);
 
-  return <main>{!isVerify ? <Loading /> : <div>{children}</div>}</main>;
+  return (
+    <main>
+      {!isVerify ? (
+        <Loading />
+      ) : (
+        <div className="flex flex-col h-screen">
+          <Header />
+          <div className="flex-grow">{children}</div>
+          <footer className="shrink-0 h-[50px]">footer</footer>
+        </div>
+      )}
+    </main>
+  );
 }
 
 const checkVerify = async (axiosAuth: AxiosInstance): Promise<boolean> => {

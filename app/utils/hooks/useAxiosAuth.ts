@@ -11,8 +11,7 @@ const useAxiosAuth = () => {
   useEffect(() => {
     const requestIntercept = axiosAuth.interceptors.request.use(
       (config) => {
-        console.log("header " + accessToken);
-        if (!config.headers["Authorization"]) {
+        if (!config.headers["Authorization"] && accessToken) {
           config.headers["Authorization"] = `Bearer ${accessToken}`;
         }
         return config;
@@ -34,7 +33,6 @@ const useAxiosAuth = () => {
               withCredentials: true,
             }
           );
-          console.log("new access: " + res.data.accessToken);
           setAccessToken(res.data.accessToken);
           prevRequest.headers["Authorization"] = `Bearer ${res.data.accessToken}`;
           return axiosAuth(prevRequest);
