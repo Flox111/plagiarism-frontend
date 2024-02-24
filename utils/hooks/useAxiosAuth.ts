@@ -2,12 +2,10 @@
 
 import { useEffect } from "react";
 import { axiosAuth } from "../axios/axios";
-import { useToken } from "../../context/TokenContext";
+import { TokenContextProps } from "../../context/TokenContext";
 import axios from "axios";
 
-const useAxiosAuth = () => {
-  const { accessToken, setAccessToken } = useToken();
-
+const useAxiosAuth = ({ accessToken, setAccessToken }: TokenContextProps) => {
   useEffect(() => {
     const requestIntercept = axiosAuth.interceptors.request.use(
       (config) => {
@@ -34,7 +32,9 @@ const useAxiosAuth = () => {
             }
           );
           setAccessToken(res.data.accessToken);
-          prevRequest.headers["Authorization"] = `Bearer ${res.data.accessToken}`;
+          prevRequest.headers[
+            "Authorization"
+          ] = `Bearer ${res.data.accessToken}`;
           return axiosAuth(prevRequest);
         }
         return Promise.reject(error);

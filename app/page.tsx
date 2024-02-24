@@ -1,4 +1,4 @@
-import { SetupData } from "./components/setupdata/SetupData";
+import { SetupData } from "../components/setupdata/SetupData";
 
 export default function Home() {
   return (

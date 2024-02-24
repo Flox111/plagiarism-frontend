@@ -3,15 +3,10 @@
 import { AxiosError, AxiosInstance } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import useAxiosAuth from "../utils/hooks/useAxiosAuth";
-import { Loading } from "../components/loading/Loading";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { Header } from "../components/header/Header";
-
-interface UserResponse {
-  data: string | null;
-  error: AxiosError | null;
-}
+import useAxiosAuth from "../../utils/hooks/useAxiosAuth";
+import { Loading } from "../../components/loading/Loading";
+import { Header } from "../../components/header/Header";
+import { useToken } from "../../context/TokenContext";
 
 export default function DashboardLayout({
   children,
@@ -19,7 +14,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter();
-  const axiosAuth = useAxiosAuth();
+  const { accessToken, setAccessToken } = useToken();
+
+  const axiosAuth = useAxiosAuth({ accessToken, setAccessToken });
   const [isVerify, setVerify] = useState<boolean>(false);
 
   useEffect(() => {

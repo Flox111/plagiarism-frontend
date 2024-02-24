@@ -3,7 +3,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, SVGProps, JSX } from "react";
 import Image from "next/image";
-import { axiosAuth } from "@/app/utils/axios/axios";
+import { axiosAuth } from "@/utils/axios/axios";
 
 export default function ProfileDropdown() {
   const handleLogout = async () => {

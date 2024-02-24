@@ -2,7 +2,7 @@
 
 import { createContext, useState, useContext, ReactNode } from "react";
 
-interface TokenContextProps {
+export interface TokenContextProps {
   accessToken: string | null;
   setAccessToken: (token: string | null) => void;
 }

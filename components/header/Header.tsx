@@ -5,8 +5,7 @@ import styles from "./header.module.scss";
 import ProfileDropdown from "./profile/ProfileDropdown";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const contestPath = "/dashboard/contest";
+import { useToken } from "@/context/TokenContext";
 
 const root = "/dashboard";
 const tabs = new Map<string, string>([
@@ -16,6 +15,9 @@ const tabs = new Map<string, string>([
 
 export const Header: FC = () => {
   const currentPathname = usePathname();
+  const token = useToken();
+
+  console.log(token.accessToken);
   const isSubPath = (path: string) => currentPathname.startsWith(path);
   return (
     <header className={styles.parent}>
@@ -29,7 +31,11 @@ export const Header: FC = () => {
                 className="text-[16px] font-medium text-dark-gray-70"
               >
                 <div
-                  className={isSubPath(root + path) ? "text-dark-gray-100 font-semibold" : ""}
+                  className={
+                    isSubPath(root + path)
+                      ? "text-dark-gray-100 font-semibold"
+                      : ""
+                  }
                 >
                   {tab}
                 </div>

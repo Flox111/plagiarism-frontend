@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { TokenProvider } from "./context/TokenContext";
-
-const inter = Inter({ subsets: ["latin"] });
+import { TokenProvider } from "../context/TokenContext";
 
 export const metadata: Metadata = {
   title: "Plagiarism checker",
