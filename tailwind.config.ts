@@ -41,6 +41,18 @@ const config: Config = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
+      "main": {
+        1: "#1a1a1a",
+        2: "#282828",
+        3: "#0a84ff",
+        4: "#2cbb5d",
+        5: "#f3f5f8",
+        6: "#7ce09f"
+      },
+      // "main": {
+      //   1: "#18181b",
+      //   2: "#222228"
+      // },
       "dark-gray": {
         5: "#101010",
         10: "#1a1a1a",

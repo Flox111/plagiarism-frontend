@@ -5,19 +5,14 @@ import styles from "./header.module.scss";
 import ProfileDropdown from "./profile/ProfileDropdown";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useToken } from "@/context/TokenContext";
 
 const root = "/dashboard";
 const tabs = new Map<string, string>([
-  ["Contest", "/contest"],
-  ["Contest2", "/contest2"],
+  ["Contest", "/contest"]
 ]);
 
 export const Header: FC = () => {
   const currentPathname = usePathname();
-  const token = useToken();
-
-  console.log(token.accessToken);
   const isSubPath = (path: string) => currentPathname.startsWith(path);
   return (
     <header className={styles.parent}>
@@ -38,6 +33,7 @@ export const Header: FC = () => {
                   }
                 >
                   {tab}
+                  <div className="after:bg-white after:h-2 after:w-full inline-block"></div>
                 </div>
               </Link>
             );
