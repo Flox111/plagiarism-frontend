@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import styles from "./contests.module.scss";
+import styles from "./problems.module.scss";
 import { usePathname, useRouter } from "next/navigation";
 
 export interface ContestProps {
@@ -7,40 +7,34 @@ export interface ContestProps {
   title: string;
 }
 
-const generateContests = () => {
+const generateProblems = () => {
   const contests: ContestProps[] = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     contests.push({ id: i, title: `Weekly Contest ${i}` });
   }
   return contests;
 };
 
-const Contests: FC = () => {
+const Problems: FC = () => {
   const router = useRouter();
   const path = usePathname();
 
-  const [contests, setContests] = useState<ContestProps[]>(generateContests());
+  const [problems, setProblems] = useState<ContestProps[]>(generateProblems());
 
   return (
     <div className={styles.parent}>
       <div className={styles.table}>
         <div className={styles.table_header}>
-          <div className="w-20 px-2">Type</div>
           <div className="flex-1">Title</div>
         </div>
-        {contests.map((contest, index) => {
+        {problems.map((problem, index) => {
           return (
             <div key={index} className={styles.table_row}>
-              <div className="w-20 flex justify-center items-center">
-                <div className="text-ds-blue-700 bg-ds-blue-100 text-[9px] font-bold rounded-lg px-2 py-1 w-fit">
-                  CUSTOM
-                </div>
-              </div>
               <div
                 className="flex-1 text-ds-gray-1000"
-                onClick={() => router.push(`${path}/${contest.id}`)}
+                onClick={() => router.push(`${path}/problems/${problem.id}`)}
               >
-                {contest.title}
+                {problem.title}
               </div>
             </div>
           );
@@ -50,4 +44,4 @@ const Contests: FC = () => {
   );
 };
 
-export default Contests;
+export default Problems;

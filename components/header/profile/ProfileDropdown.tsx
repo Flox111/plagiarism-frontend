@@ -19,13 +19,13 @@ export default function ProfileDropdown() {
   return (
     <div className="justify-end">
       <Menu as="div" className="relative h-[24px] p-0 m-0">
-        <Menu.Button className="pb-2">
+        <Menu.Button className="pb-4">
           <Image
             src="/default_avatar.jpg"
             alt="default_avatar"
-            width={24}
-            height={24}
-            className="rounded-full"
+            width={28}
+            height={26}
+            className="rounded-full border-ds-green-800 border-[3px]"
           />
         </Menu.Button>
         <Transition
@@ -37,7 +37,7 @@ export default function ProfileDropdown() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-72 px-2 pb-2 rounded-xl bg-dark-gray-30 shadow-lg ring-1 ring-black/5 focus:outline-none">
+          <Menu.Items className="absolute right-0 mt-2 w-72 px-2 pb-2 rounded-xl shadow-lg ring-1 ring-ds-gray-300 focus:outline-none backdrop-blur-[10px] backdrop-saturate-200 bg-ds-background-200">
             <div className="mx-2 my-4 flex gap-3">
               <Image
                 src="/default_avatar.jpg"

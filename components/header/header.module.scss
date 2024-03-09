@@ -1,7 +1,7 @@
 .parent {
-    @apply bg-dark-gray-25 shrink-0 h-[50px] border-b-[1px] border-white/[0.1]
+  @apply shrink-0 h-16 border-b-[1px] border-ds-gray-300 fixed w-full backdrop-blur-[10px] backdrop-saturate-200;
 }
 
 .content_wrapper {
-    @apply flex items-center min-h-full min-w-max justify-between mx-[15%];
+  @apply flex items-center min-h-full min-w-max justify-between mx-56;
 }

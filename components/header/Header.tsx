@@ -8,7 +8,8 @@ import { usePathname } from "next/navigation";
 
 const root = "/dashboard";
 const tabs = new Map<string, string>([
-  ["Contest", "/contest"]
+  ["Contest", "/contest"],
+  ["About", "/about"],
 ]);
 
 export const Header: FC = () => {
@@ -23,17 +24,12 @@ export const Header: FC = () => {
               <Link
                 key={tab}
                 href={root + path}
-                className="text-[16px] font-medium text-dark-gray-70"
+                className="text-[14px] text-ds-gray-600 leading-[23.1px]"
               >
                 <div
-                  className={
-                    isSubPath(root + path)
-                      ? "text-dark-gray-100 font-semibold"
-                      : ""
-                  }
+                  className={isSubPath(root + path) ? "text-ds-blue-700" : "hover:text-ds-gray-900"}
                 >
                   {tab}
-                  <div className="after:bg-white after:h-2 after:w-full inline-block"></div>
                 </div>
               </Link>
             );

@@ -1,0 +1,22 @@
+.parent {
+  .type {
+    @apply text-ds-blue-700 bg-ds-blue-100 text-[9px] font-bold 
+      rounded-lg flex justify-center items-center px-2 py-1 w-fit;
+  }
+
+  .table {
+    @apply flex flex-col w-full gap-3;
+  }
+
+  .table_header {
+    @apply flex flex-wrap gap-5 bg-ds-gray-100 rounded-md p-[10px] text-ds-gray-800 text-[14px] border-[0.8px] border-ds-gray-500;
+  }
+
+  .table_row {
+    @apply flex flex-wrap gap-5 py-3 ps-[10px] w-full cursor-pointer border-ds-gray-100 hover:bg-ds-gray-100 hover:rounded-md;
+  }
+
+  .table_row:not(:nth-of-type(2)) {
+    @apply border-t-[0.8px];
+  }
+}

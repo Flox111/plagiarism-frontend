@@ -29,11 +29,11 @@
   }
 
   .input_error {
-    @apply text-center bg-red-600 py-4 mb-6 rounded;
+    @apply text-center bg-ds-red-600 py-4 mb-6 rounded;
   }
 
   button {
-    @apply inline-block rounded-2xl px-7 py-3 text-xs text-white font-medium leading-snug 
+    @apply inline-block rounded-2xl px-7 py-3 text-xs text-ds-gray-1000 font-medium leading-snug 
         focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-full 
         bg-gradient-to-r from-[#255ff4] to-[#f425c7];
   }

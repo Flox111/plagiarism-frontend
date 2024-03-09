@@ -35,7 +35,7 @@ export default function DashboardLayout({
       ) : (
         <div className="flex flex-col h-screen">
           <Header />
-          <div className="flex-grow">{children}</div>
+          <div className="flex-grow mt-16">{children}</div>
           <footer className="shrink-0 h-[50px]">footer</footer>
         </div>
       )}
