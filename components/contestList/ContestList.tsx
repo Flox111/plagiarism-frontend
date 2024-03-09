@@ -1,25 +1,16 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./contests.module.scss";
 import { usePathname, useRouter } from "next/navigation";
 
-export interface ContestProps {
-  id: number;
-  title: string;
+export type ContestType = {
+  id?: number;
+  title?: string;
+  description?: string;
 }
 
-const generateContests = () => {
-  const contests: ContestProps[] = [];
-  for (let i = 0; i < 100; i++) {
-    contests.push({ id: i, title: `Weekly Contest ${i}` });
-  }
-  return contests;
-};
-
-const Contests: FC = () => {
+const ContestList: FC<{ contests: ContestType[] }> = ({ contests }) => {
   const router = useRouter();
   const path = usePathname();
-
-  const [contests, setContests] = useState<ContestProps[]>(generateContests());
 
   return (
     <div className={styles.parent}>
@@ -50,4 +41,4 @@ const Contests: FC = () => {
   );
 };
 
-export default Contests;
+export default ContestList;

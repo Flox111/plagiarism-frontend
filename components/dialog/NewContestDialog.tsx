@@ -5,17 +5,29 @@ import CustomDialog, { CustomDialogProps } from "./CustomDialog";
 import { Tab } from "@headlessui/react";
 import CloseIcon from "../icons/CloseIcon";
 import styles from "./dialog.module.scss";
+import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
+import { useToken } from "@/context/TokenContext";
 
 const PauseDialog: FC<CustomDialogProps> = ({
   isOpen,
   closeModal,
 }: CustomDialogProps) => {
+  const { accessToken, setAccessToken } = useToken();
+  const axiosAuth = useAxiosAuth({ accessToken, setAccessToken });
+
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const apply = () => {
-    close();
+  const apply = async () => {
+    try {
+      const body = {
+        title: title,
+        description: description,
+      };
+      const { data } = await axiosAuth.post("/contest/add", body);
+      close();
+    } catch (e) {}
   };
 
   const close = () => {

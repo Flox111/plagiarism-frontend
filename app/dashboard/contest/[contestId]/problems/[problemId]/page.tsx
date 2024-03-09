@@ -1,6 +1,8 @@
 import { FC } from "react";
 
-const ContestDetails: FC<{ params: { contestId: string, problemId: string } }> = ({ params }) => {
+const ContestDetails: FC<{
+  params: { contestId: string; problemId: string };
+}> = ({ params }) => {
   return (
     <div>
       <h1>{params.contestId}</h1>
