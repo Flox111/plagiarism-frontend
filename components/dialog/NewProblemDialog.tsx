@@ -1,33 +1,32 @@
 "use client";
 
-import React, { FC, createRef, useContext, useRef, useState } from "react";
+import React, { FC, useState } from "react";
 import CustomDialog, { CustomDialogProps } from "./CustomDialog";
 import { Tab } from "@headlessui/react";
 import CloseIcon from "../icons/CloseIcon";
 import styles from "./dialog.module.scss";
 import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
 import { useToken } from "@/context/TokenContext";
+import { createNewProblem } from "@/utils/axios/integrations";
+import { useParams } from "next/navigation";
 
-const NewContestDialog: FC<CustomDialogProps> = ({
+const NewProblemDialog: FC<CustomDialogProps> = ({
   isOpen,
   closeModal,
 }: CustomDialogProps) => {
+  const params = useParams();
   const { accessToken, setAccessToken } = useToken();
   const axiosAuth = useAxiosAuth({ accessToken, setAccessToken });
 
-  const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const apply = async () => {
-    try {
-      const body = {
-        title: title,
-        description: description,
-      };
-      const { data } = await axiosAuth.post("/contest/add", body);
-      close();
-    } catch (e) {}
+    createNewProblem(axiosAuth, {
+      contestId: params.contestId as unknown as number,
+      title: title,
+      description: description,
+    }).then(() => close());
   };
 
   const close = () => {
@@ -40,7 +39,7 @@ const NewContestDialog: FC<CustomDialogProps> = ({
     <CustomDialog isOpen={isOpen} closeModal={close}>
       <div className={styles.dialog}>
         <div className={styles.header}>
-          <div className={styles.header_title}>Create a new contest</div>
+          <div className={styles.header_title}>Create a new problem</div>
           <button
             type="button"
             className={styles.header_close_button}
@@ -67,32 +66,10 @@ const NewContestDialog: FC<CustomDialogProps> = ({
                         : styles.tab_title_unselected
                     }
                   >
-                    Custom
+                    Problem
                   </div>
                   <div
                     className={selected ? styles.tab_title_bottom_selected : ""}
-                  />
-                </>
-              )}
-            </Tab>
-            <Tab>
-              {({ selected }) => (
-                <>
-                  <div
-                    className={
-                      selected
-                        ? styles.tab_title_selected
-                        : styles.tab_title_unselected
-                    }
-                  >
-                    Codeforces
-                  </div>
-                  <div
-                    className={
-                      selected
-                        ? "border-b-2"
-                        : "text-primary-400 hover:text-primary-100 border-primary-200"
-                    }
                   />
                 </>
               )}
@@ -127,4 +104,4 @@ const NewContestDialog: FC<CustomDialogProps> = ({
   );
 };
 
-export default NewContestDialog;
+export default NewProblemDialog;

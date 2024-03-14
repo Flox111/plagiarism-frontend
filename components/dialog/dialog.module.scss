@@ -1,5 +1,5 @@
 .dialog {
-  @apply flex-1 flex flex-col gap-3 border-b-[1px] border-ds-gray-300 pb-7;
+  @apply flex-1 flex flex-col gap-3 border-b-[1px] border-ds-gray-100 pb-7;
 
   input {
     @apply mt-1 w-full bg-ds-gray-100 px-1 py-[5px] rounded-md outline-none text-[14px] text-ds-gray-1000 placeholder:text-ds-gray-700;
@@ -7,7 +7,7 @@
 }
 
 .header {
-  @apply flex justify-between border-b-[1px] border-ds-gray-300 w-full;
+  @apply flex justify-between border-b-[1px] border-ds-gray-100 w-full;
 }
 
 .header_title {
@@ -19,7 +19,7 @@
 }
 
 .tab_list {
-  @apply flex justify-around text-[13px] border-ds-gray-300 border-b-[1px] mx-[10px];
+  @apply flex justify-around text-[13px] border-ds-gray-100 border-b-[1px] mx-[10px];
 }
 
 .tab_title_selected {

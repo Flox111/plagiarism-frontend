@@ -1,12 +1,7 @@
 import { FC } from "react";
 import styles from "./contests.module.scss";
 import { usePathname, useRouter } from "next/navigation";
-
-export type ContestType = {
-  id?: number;
-  title?: string;
-  description?: string;
-}
+import { ContestType } from "@/utils/axios/integrations";
 
 const ContestList: FC<{ contests: ContestType[] }> = ({ contests }) => {
   const router = useRouter();
@@ -19,9 +14,9 @@ const ContestList: FC<{ contests: ContestType[] }> = ({ contests }) => {
           <div className="w-20 px-2">Type</div>
           <div className="flex-1">Title</div>
         </div>
-        {contests.map((contest, index) => {
+        {contests.map((contest) => {
           return (
-            <div key={index} className={styles.table_row}>
+            <div key={contest.id} className={styles.table_row}>
               <div className="w-20 flex justify-center items-center">
                 <div className="text-ds-blue-700 bg-ds-blue-100 text-[9px] font-bold rounded-lg px-2 py-1 w-fit">
                   CUSTOM

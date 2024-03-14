@@ -1,8 +1,11 @@
+"use client"
+
+import { useParams } from "next/navigation";
 import { FC } from "react";
 
-const ContestDetails: FC<{
-  params: { contestId: string; problemId: string };
-}> = ({ params }) => {
+const ContestDetails: FC = () => {
+  const params = useParams();
+
   return (
     <div>
       <h1>{params.contestId}</h1>

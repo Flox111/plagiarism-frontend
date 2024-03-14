@@ -6,11 +6,11 @@
   }
 
   .title {
-    @apply text-lg text-ds-gray-1000 font-semibold;
+    @apply text-[30px] text-ds-gray-1000 font-semibold;
   }
 
   .add_btn {
-    @apply bg-ds-green-100 text-ds-green-700 border-ds-green-400 ml-auto shadow-ds-green-400
+    @apply py-1 bg-ds-green-100 text-ds-green-700 border-ds-green-400 ml-auto shadow-ds-green-400
       border-[0.8px] rounded-lg text-[12px] flex justify-center items-center px-[4px] cursor-pointer;
   }
 }

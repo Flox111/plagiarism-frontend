@@ -1,25 +1,11 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./problems.module.scss";
 import { usePathname, useRouter } from "next/navigation";
+import { ProblemType } from "@/utils/axios/integrations";
 
-export interface ContestProps {
-  id: number;
-  title: string;
-}
-
-const generateProblems = () => {
-  const contests: ContestProps[] = [];
-  for (let i = 0; i < 10; i++) {
-    contests.push({ id: i, title: `Weekly Contest ${i}` });
-  }
-  return contests;
-};
-
-const Problems: FC = () => {
+const Problems: FC<{ problems: ProblemType[] }> = ({ problems }) => {
   const router = useRouter();
   const path = usePathname();
-
-  const [problems, setProblems] = useState<ContestProps[]>(generateProblems());
 
   return (
     <div className={styles.parent}>

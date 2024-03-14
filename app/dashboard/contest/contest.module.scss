@@ -6,7 +6,7 @@
   }
 
   .title {
-    @apply text-lg text-ds-gray-1000 font-semibold;
+    @apply text-[30px] text-ds-gray-1000 font-semibold;
   }
 
   .add_btn {
@@ -14,3 +14,4 @@
       border-[0.8px] rounded-lg text-[12px] flex justify-center items-center px-[4px] cursor-pointer;
   }
 }
+
