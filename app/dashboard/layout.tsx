@@ -33,7 +33,7 @@ export default function DashboardLayout({
       {!isVerify ? (
         <Loading />
       ) : (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col min-h-screen">
           <Header />
           <div className="flex-grow">{children}</div>
           <footer className="shrink-0 h-[50px] border-t-[1px] border-ds-gray-500 mt-80">footer</footer>

@@ -1,0 +1,16 @@
+.root {
+    @apply flex flex-col justify-center items-center mx-[17%] my-5;
+  
+    input {
+      @apply bg-ds-gray-100 px-1 py-[5px] rounded-md outline-none text-[14px] text-ds-gray-1000 placeholder:text-ds-gray-700;
+    }
+  
+    .title {
+      @apply text-[30px] text-ds-gray-1000 font-semibold;
+    }
+  
+    .add_btn {
+      @apply py-1 bg-ds-green-100 text-ds-green-700 border-ds-green-400 ml-auto shadow-ds-green-400
+        border-[0.8px] rounded-lg text-[12px] flex justify-center items-center px-[4px] cursor-pointer;
+    }
+  }

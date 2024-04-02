@@ -5,18 +5,47 @@ export type ContestDetailType = {
   problems: ProblemType[];
 };
 
+export type ProblemDetailType = {
+  problem: ProblemType;
+  solutions: SolutionType[];
+};
+
+export type SolutionDetailType = {
+  solution: SolutionType;
+  plagiarismResults: PlagiarismResultType[];
+};
+
 export type ContestType = {
-  id: number;
+  id?: number;
   title: string;
   description: string;
-  createdDate: string;
+  contestType: string;
+  createdDate?: string;
 };
 
 export type ProblemType = {
-  id: number;
+  id?: number;
   title: string;
   description: string;
-  createdDate: string;
+  createdDate?: string;
+  contestId: number;
+};
+
+export type SolutionType = {
+  id?: number;
+  sourceCode: string;
+  programmingLanguage: string;
+  plagiarismStatus?: string;
+  maxPlagiarism?: number,
+  author?: string;
+  createdDate?: string;
+  problemId?: number;
+};
+
+export type PlagiarismResultType = {
+  plagiarism: number,
+  plagiarismType: string,
+  similarSolution: SolutionType,
 };
 
 export const contestsFetch = async (
@@ -45,27 +74,51 @@ export const contestDetailFetch = async (
   return contestDetail;
 };
 
-export type ContestRequestType = {
-  title: string;
-  description: string;
+export const problemDetailFetch = async (
+  axiosAuth: AxiosInstance,
+  problemId: string
+): Promise<ProblemDetailType | null> => {
+  let contestDetail: ProblemDetailType | null = null;
+  const body = {
+    problemId: problemId,
+    pageNumber: 0,
+    pageSize: 50,
+  };
+  const { data } = await axiosAuth.post("/problem/detail", body);
+  contestDetail = data;
+  return contestDetail;
+};
+
+export const solutionDetailFetch = async (
+  axiosAuth: AxiosInstance,
+  solutionId: string
+): Promise<SolutionDetailType | null> => {
+  let solutionDetail: SolutionDetailType | null = null;
+  const body = {
+    solutionId: solutionId,
+  };
+  const { data } = await axiosAuth.post("/solution/detail", body);
+  solutionDetail = data;
+  return solutionDetail;
 };
 
 export const createNewContest = async (
   axiosAuth: AxiosInstance,
-  contest: ContestRequestType
+  contest: ContestType
 ) => {
   await axiosAuth.post("/contest/add", contest);
 };
 
-export type ProblemRequestType = {
-  contestId: number;
-  title: string;
-  description: string;
-};
-
 export const createNewProblem = async (
   axiosAuth: AxiosInstance,
-  problem: ProblemRequestType
+  problem: ProblemType
 ) => {
   await axiosAuth.post("/problem/add", problem);
+};
+
+export const createNewSolution = async (
+  axiosAuth: AxiosInstance,
+  solution: SolutionType
+) => {
+  await axiosAuth.post("/solution/add", solution);
 };

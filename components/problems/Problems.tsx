@@ -11,7 +11,7 @@ const Problems: FC<{ problems: ProblemType[] }> = ({ problems }) => {
     <div className={styles.parent}>
       <div className={styles.table}>
         <div className={styles.table_header}>
-          <div className="flex-1">Title</div>
+          <div className="flex-1">Problem list</div>
         </div>
         {problems.map((problem, index) => {
           return (

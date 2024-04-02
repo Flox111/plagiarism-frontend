@@ -1,8 +1,7 @@
 "use client";
 
-import { SearchIcon } from "@/components/icons/SearchIcon";
 import { FC, useEffect, useState } from "react";
-import styles from "./problems.module.scss";
+import styles from "./contestId.module.scss";
 import Problems from "@/components/problems/Problems";
 import { useToken } from "@/context/TokenContext";
 import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
@@ -15,6 +14,7 @@ import {
 } from "@/utils/axios/integrations";
 import TableOfContents from "@/components/tableOfContents/TableOfContents";
 import NewProblemDialog from "@/components/dialog/NewProblemDialog";
+import { ContestTypeComponent } from "@/components/contestType/ContestTypeComponent";
 
 const ContestDetail: FC<{ params: { contestId: string } }> = ({ params }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,11 +53,18 @@ const ContestDetail: FC<{ params: { contestId: string } }> = ({ params }) => {
       <div className="grid grid-cols-[4fr_1fr] gap-10 w-full">
         <div className="w-full flex flex-col gap-5">
           <div className="border-b-[1px] border-ds-gray-100">
-            <div id="section-1" className={styles.title}>
-              {contestDetail.contest.title}
+            <div className="flex gap-3">
+              <ContestTypeComponent
+                contestType={contestDetail.contest.contestType}
+                className="self-center"
+              />
+              <div id="section-1" className={styles.title}>
+                {contestDetail.contest.title}
+              </div>
             </div>
+
             <div className="mt-8 mb-14 flex flex-col gap-3">
-              <p>Description: {contestDetail.contest.description}</p>
+              <p>{contestDetail.contest.description}</p>
               <p>Created date: {contestDetail.contest.createdDate}</p>
             </div>
           </div>

@@ -1,12 +1,13 @@
 "use client";
 
-import React, { FC, createRef, useContext, useRef, useState } from "react";
+import React, { FC, useState } from "react";
 import CustomDialog, { CustomDialogProps } from "./CustomDialog";
 import { Tab } from "@headlessui/react";
 import CloseIcon from "../icons/CloseIcon";
 import styles from "./dialog.module.scss";
 import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
 import { useToken } from "@/context/TokenContext";
+import { createNewContest } from "@/utils/axios/integrations";
 
 const NewContestDialog: FC<CustomDialogProps> = ({
   isOpen,
@@ -15,19 +16,16 @@ const NewContestDialog: FC<CustomDialogProps> = ({
   const { accessToken, setAccessToken } = useToken();
   const axiosAuth = useAxiosAuth({ accessToken, setAccessToken });
 
-  const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const apply = async () => {
-    try {
-      const body = {
-        title: title,
-        description: description,
-      };
-      const { data } = await axiosAuth.post("/contest/add", body);
-      close();
-    } catch (e) {}
+    createNewContest(axiosAuth, {
+      title: title,
+      description: description,
+      contestType: selectedIndex == 0 ? "CUSTOM" : "CODEFORCES",
+    }).then(() => close());
   };
 
   const close = () => {
@@ -37,7 +35,7 @@ const NewContestDialog: FC<CustomDialogProps> = ({
   };
 
   return (
-    <CustomDialog isOpen={isOpen} closeModal={close}>
+    <CustomDialog isOpen={isOpen} closeModal={close} className="max-w-lg">
       <div className={styles.dialog}>
         <div className={styles.header}>
           <div className={styles.header_title}>Create a new contest</div>
@@ -55,7 +53,7 @@ const NewContestDialog: FC<CustomDialogProps> = ({
             свое выполнение
           </div>
         </div>
-        <Tab.Group>
+        <Tab.Group onChange={(index) => setSelectedIndex(index)}>
           <Tab.List className={styles.tab_list}>
             <Tab>
               {({ selected }) => (

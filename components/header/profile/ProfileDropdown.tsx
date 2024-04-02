@@ -37,7 +37,7 @@ export default function ProfileDropdown() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-72 px-2 pb-2 rounded-xl shadow-lg ring-1 ring-ds-gray-300 focus:outline-none backdrop-blur-[10px] backdrop-saturate-200 bg-ds-background-200">
+          <Menu.Items className="absolute right-0 mt-2 w-72 px-2 pb-2 rounded-xl shadow-lg ring-1 ring-ds-gray-300 focus:outline-none bg-ds-background-200">
             <div className="mx-2 my-4 flex gap-3">
               <Image
                 src="/default_avatar.jpg"

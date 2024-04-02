@@ -54,3 +54,9 @@
       border-[0.8px] rounded-lg text-[12px] flex justify-center items-center px-2 py-1;
   }
 }
+
+.dialog_panel {
+  @apply relative w-full  
+    max-h-[90vh] overflow-y-auto transform rounded-[4px] bg-ds-background-200 
+    text-left transition-all flex flex-col gap-5;
+}

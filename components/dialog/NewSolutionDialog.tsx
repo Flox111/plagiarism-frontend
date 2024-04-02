@@ -7,10 +7,14 @@ import CloseIcon from "../icons/CloseIcon";
 import styles from "./dialog.module.scss";
 import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
 import { useToken } from "@/context/TokenContext";
-import { createNewProblem } from "@/utils/axios/integrations";
+import { createNewSolution } from "@/utils/axios/integrations";
 import { useParams } from "next/navigation";
+import { Editor } from "@monaco-editor/react";
+import { CustomListbox, ListboxElementType } from "../listbox/CustomListbox";
 
-const NewProblemDialog: FC<CustomDialogProps> = ({
+const langs: ListboxElementType[] = [{ name: "java" }];
+
+const NewSolutionDialog: FC<CustomDialogProps> = ({
   isOpen,
   closeModal,
 }: CustomDialogProps) => {
@@ -18,28 +22,29 @@ const NewProblemDialog: FC<CustomDialogProps> = ({
   const { accessToken, setAccessToken } = useToken();
   const axiosAuth = useAxiosAuth({ accessToken, setAccessToken });
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [selectedLang, setSelectedLang] = useState(langs[0]);
+  const [sourceCode, setSourceCode] = useState("");
 
   const apply = async () => {
-    createNewProblem(axiosAuth, {
-      contestId: params.contestId as unknown as number,
-      title: title,
-      description: description,
+    createNewSolution(axiosAuth, {
+      problemId: params.problemId as unknown as number,
+      sourceCode: sourceCode,
+      programmingLanguage: selectedLang.name.toUpperCase(),
     }).then(() => close());
   };
 
   const close = () => {
-    setTitle("");
-    setDescription("");
+    setSourceCode("");
     closeModal();
   };
 
   return (
-    <CustomDialog isOpen={isOpen} closeModal={close} className="max-w-lg">
+    <CustomDialog isOpen={isOpen} closeModal={close} className="max-w-[150vh]">
       <div className={styles.dialog}>
         <div className={styles.header}>
-          <div className={styles.header_title}>Create a new problem</div>
+          <div className={styles.header_title}>
+            Submit your solution to check for plagiarism
+          </div>
           <button
             type="button"
             className={styles.header_close_button}
@@ -50,8 +55,8 @@ const NewProblemDialog: FC<CustomDialogProps> = ({
         </div>
         <div className="mx-[10px]">
           <div className="text-[11.5px] mb-2">
-            Задайте время (мс), в течении которого запущенный сценарий остановит
-            свое выполнение
+            Сhoose a programming language, add your solution and submit it for
+            plagiarism verification
           </div>
         </div>
         <Tab.Group>
@@ -66,7 +71,7 @@ const NewProblemDialog: FC<CustomDialogProps> = ({
                         : styles.tab_title_unselected
                     }
                   >
-                    Problem
+                    Solution
                   </div>
                   <div
                     className={selected ? styles.tab_title_bottom_selected : ""}
@@ -79,17 +84,21 @@ const NewProblemDialog: FC<CustomDialogProps> = ({
             <Tab.Panel>
               <div className="flex flex-col gap-3">
                 <div>
-                  <div className={styles.input_title_required}>Title</div>
-                  <input
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                  <div className={styles.input_title_required}>Lang</div>
+                  <CustomListbox
+                    list={langs}
+                    selected={selectedLang}
+                    setSelected={setSelectedLang}
                   />
                 </div>
                 <div>
-                  <div className={styles.input_title_required}>Description</div>
-                  <input
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                  <div className={styles.input_title_required}>Source code</div>
+                  <Editor
+                    height="350px"
+                    language={selectedLang.name}
+                    theme="vs-dark"
+                    value={sourceCode}
+                    onChange={(it) => setSourceCode(it as string)}
                   />
                 </div>
               </div>
@@ -104,4 +113,4 @@ const NewProblemDialog: FC<CustomDialogProps> = ({
   );
 };
 
-export default NewProblemDialog;
+export default NewSolutionDialog;

@@ -44,7 +44,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ sections }) => {
   };
 
   return (
-    <div className="flex flex-col sticky top-20 self-start text-[14px] text-ds-gray-600 gap-1">
+    <div className="flex flex-col sticky top-20 self-start text-[14px] text-ds-gray-600 gap-1 -z-10">
       <div className="text-ds-gray-1000 font-medium">On this page</div>
       {sections.map((section, index) => (
         <div

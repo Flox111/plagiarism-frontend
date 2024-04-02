@@ -1,19 +1,22 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { FC, Fragment } from "react";
+import styles from "./dialog.module.scss"
 
 export interface CustomDialogProps {
   isOpen: boolean;
   closeModal: () => void;
   children?: React.ReactNode;
+  className?: string;
 }
 
 const CustomDialog: FC<CustomDialogProps> = ({
   isOpen,
   closeModal,
   children,
+  className
 }) => {
   return (
-    <>
+    <div >
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -39,9 +42,7 @@ const CustomDialog: FC<CustomDialogProps> = ({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className="relative w-full max-w-lg scrollable 
-                    max-h-[90vh] overflow-y-auto transform rounded-[4px] bg-ds-background-200 
-                    text-left shadow-lg transition-all flex flex-col gap-5 text-primary-100"
+                  className={styles.dialog_panel + " " + className}
                 >
                   {children}
                 </Dialog.Panel>
@@ -50,7 +51,7 @@ const CustomDialog: FC<CustomDialogProps> = ({
           </div>
         </Dialog>
       </Transition>
-    </>
+    </div>
   );
 };
 

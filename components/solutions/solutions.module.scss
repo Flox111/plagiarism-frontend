@@ -1,0 +1,19 @@
+.parent {
+
+    .type {
+      @apply text-ds-blue-700 bg-ds-blue-100 text-[9px] font-bold 
+        rounded-lg flex justify-center items-center px-2 py-1 w-fit;
+    }
+  
+    .table {
+      @apply flex flex-col w-full gap-3;
+    }
+  
+    .table_header {
+      @apply flex flex-wrap gap-5;
+    }
+  
+    .table_row {
+      @apply flex flex-wrap gap-5 py-3 w-full border-t-[1px] cursor-pointer border-ds-gray-100 hover:bg-ds-gray-100 hover:rounded-md;
+    }
+  }
