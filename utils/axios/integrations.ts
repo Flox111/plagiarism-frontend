@@ -44,7 +44,7 @@ export type SolutionType = {
 
 export type PlagiarismResultType = {
   plagiarism: number,
-  plagiarismType: string,
+  algorithmType: string,
   similarSolution: SolutionType,
 };
 

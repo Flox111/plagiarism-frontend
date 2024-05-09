@@ -59,7 +59,7 @@ const SolutionDetail: FC = () => {
           {plagiarismResults.map((result, index) => (
             <div key={index} className="inline-block">
               <p>
-                {result.plagiarismType}: {result.plagiarism}
+                {result.algorithmType}: {result.plagiarism}
               </p>
             </div>
           ))}
@@ -78,22 +78,25 @@ const SolutionDetail: FC = () => {
                     : "bg-ds-gray-alpha-100 hover:bg-white/[0.12] hover:text-white")
                 }
               >
-                {result.plagiarismType}
+                {result.algorithmType}
               </Tab>
             ))}
           </Tab.List>
-          <Tab.Panels className="mt-2">
+          <Tab.Panels className="mt-2 w-full">
             {plagiarismResults.map((result, index) => (
-              <Tab.Panel key={index} className="flex justify-evenly">
-                <div>
+              <Tab.Panel key={index} className="flex flex-col xl:flex-row justify-center">
+                <div className="w-full grow max-w-[460px]">
                   <div className="px-[10px]">This solution</div>
-                  <div className="px-[10px]">
+                  <div className="px-[10px] pb-[25px]">
                     Created date: {solution.createdDate}
                   </div>
                   <CustomSyntaxHighlighter solution={solution} />
                 </div>
-                <div>
+                <div className="w-full grow max-w-[460px]">
                   <div className="px-[10px]">Similar solution</div>
+                  <div className="px-[10px]">
+                    Plagiarism: {result.plagiarism}
+                  </div>
                   <div className="px-[10px]">
                     Created date: {result.similarSolution.createdDate}
                   </div>
