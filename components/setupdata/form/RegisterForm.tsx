@@ -27,7 +27,7 @@ export const RegisterForm = ({ changeState }: RegisterFormProps) => {
     e.preventDefault();
 
     const payload = {
-      email: formValues.username,
+      username: formValues.username,
       password: formValues.password,
     };
     try {

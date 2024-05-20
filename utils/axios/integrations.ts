@@ -36,27 +36,28 @@ export type SolutionType = {
   sourceCode: string;
   programmingLanguage: string;
   plagiarismStatus?: string;
-  maxPlagiarism?: number,
+  maxPlagiarism?: number;
   author?: string;
   createdDate?: string;
   problemId?: number;
 };
 
 export type PlagiarismResultType = {
-  plagiarism: number,
-  algorithmType: string,
-  similarSolution: SolutionType,
+  plagiarism: number;
+  algorithmType: string;
+  similarSolution: SolutionType;
 };
 
 export const contestsFetch = async (
   axiosAuth: AxiosInstance
 ): Promise<ContestType[]> => {
   let contests: ContestType[] = [];
-  const body = {
+  const params = {
     pageNumber: 0,
     pageSize: 50,
   };
-  const { data } = await axiosAuth.post("/contest/findAll", body);
+  const { data } = await axiosAuth.get("/contest/findAll", { params: params });
+
   contests = data.contests;
   return contests;
 };

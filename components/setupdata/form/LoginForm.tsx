@@ -30,7 +30,7 @@ export const LoginForm: FC<LoginFormProps> = ({ changeState }) => {
     }
 
     const payload = {
-      email: formValues.username,
+      username: formValues.username,
       password: formValues.password,
     };
     try {
